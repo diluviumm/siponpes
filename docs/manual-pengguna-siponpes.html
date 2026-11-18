@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual Pengguna SiPonPes &mdash; Sistem Informasi Pondok Pesantren</title>
+<style>
+  :root {
+    --pine-900: #1a3c34;
+    --pine-800: #235347;
+    --pine-700: #2d6a5e;
+    --pine-600: #388e7a;
+    --ink: #1e293b;
+    --ink-80: #334155;
+    --ink-60: #64748b;
+    --ink-40: #94a3b8;
+    --paper: #faf9f5;
+    --cream: #f5f0eb;
+    --gold-300: #d4a853;
+    --gold-100: #f5e8cb;
+    --rose-600: #e11d48;
+    --rose-50: #fff1f2;
+    --green-700: #15803d;
+    --sky-50: #f0f9ff;
+    --amber-50: #fffbeb;
+    --border: #e2e0db;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* sidebar */
+  .sidebar {
+    position: fixed; top:0; left:0; bottom:0; width:270px;
+    background: var(--pine-900);
+    color: #fff; overflow-y:auto; z-index:100;
+    padding: 20px 0 40px;
+  }
+  .sidebar h2 {
+    font-size: 14px; font-weight:700; text-transform:uppercase; letter-spacing:0.05em;
+    padding: 10px 20px 5px; color: rgba(255,255,255,0.5);
+  }
+  .sidebar a {
+    display: block; padding: 7px 20px; color: rgba(255,255,255,0.8);
+    text-decoration: none; font-size: 13px; border-left: 3px solid transparent;
+    transition: 0.15s;
+  }
+  .sidebar a:hover, .sidebar a.active {
+    background: rgba(255,255,255,0.08); color: #fff;
+    border-left-color: var(--gold-300);
+  }
+  .sidebar a.section {
+    font-weight: 600; color: #fff; border-left-color: transparent; margin-top: 6px;
+  }
+
+  /* main */
+  .main {
+    margin-left: 270px; padding: 40px 50px 100px; max-width: 960px;
+  }
+  .main h1 {
+    font-size: 32px; color: var(--pine-900); margin-bottom: 6px;
+    border-bottom: 3px solid var(--gold-300); padding-bottom: 10px;
+  }
+  .main h2 {
+    font-size: 22px; color: var(--pine-800); margin: 40px 0 10px; padding-top: 10px;
+  }
+  .main h3 {
+    font-size: 17px; color: var(--pine-700); margin: 24px 0 8px;
+  }
+  .main h4 {
+    font-size: 15px; color: var(--ink-80); margin: 18px 0 4px;
+  }
+  .main p { margin: 10px 0; color: var(--ink-80); }
+  .main ul, .main ol { margin: 8px 0 8px 20px; color: var(--ink-80); }
+  .main li { margin: 4px 0; }
+
+  .main hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+
+  .main pre {
+    background: #1e293b; color: #e2e8f0; padding: 12px 16px; border-radius: 8px;
+    overflow-x: auto; font-size: 13px; margin: 12px 0;
+  }
+  .main code {
+    background: var(--cream); padding: 2px 6px; border-radius: 4px;
+    font-size: 13px; color: var(--pine-800);
+  }
+  .main pre code {
+    background: none; padding: 0; color: inherit;
+  }
+
+  .main blockquote {
+    border-left: 4px solid var(--gold-300);
+    background: var(--gold-100);
+    padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0;
+    color: var(--ink-80);
+  }
+  .main blockquote.info {
+    border-left-color: #3b82f6; background: var(--sky-50);
+  }
+  .main blockquote.warn {
+    border-left-color: #d97706; background: var(--amber-50);
+  }
+
+  .main .role-badge {
+    display: inline-block; padding: 2px 10px; border-radius: 12px;
+    font-size: 12px; font-weight: 600; margin-right: 4px;
+  }
+  .role-superadmin { background:#e11d48; color:#fff; }
+  .role-admin { background:#2d6a5e; color:#fff; }
+  .role-kasir { background:#64748b; color:#fff; }
+
+  .main table {
+    width:100%; border-collapse:collapse; margin:12px 0;
+    font-size:14px;
+  }
+  .main th, .main td {
+    border:1px solid var(--border); padding:8px 12px; text-align:left;
+  }
+  .main th { background:var(--cream); font-weight:600; color:var(--ink-80); }
+
+  .main img.placeholder {
+    display:block; max-width:100%; margin:16px 0;
+    border:1px solid var(--border); border-radius:8px;
+    background: #f1f5f9; padding:40px 20px; text-align:center;
+    color: var(--ink-40); font-size:14px;
+  }
+
+  /* scroll spy */
+  .sidebar a.highlight {
+    background: rgba(255,255,255,0.12);
+    border-left-color: var(--gold-300);
+  }
+
+  @media (max-width:768px){
+    .sidebar { position:static; width:100%; padding:10px 0; max-height:300px; overflow-y:auto; border-bottom:2px solid var(--gold-300); }
+    .main { margin-left:0; padding:20px; }
+    .sidebar h2 { font-size:12px; padding:6px 14px; }
+    .sidebar a { font-size:12px; padding:5px 14px; }
+  }
+
+  @media print {
+    .sidebar { display:none; }
+    .main { margin:0; padding:20px; }
+    .main h2 { page-break-before:always; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sidebar" id="sidebar">
+  <h2>SiPonPes</h2>
+  <a href="#pendahuluan" class="section">1. Pendahuluan</a>
+  <a href="#memulai">2. Memulai</a>
+  <a href="#dashboard">3. Dashboard</a>
+  <a href="#data-santri">4. Data Santri</a>
+  <a href="#kelas">5. Kelas</a>
+  <a href="#tabungan">6. Tabungan Santri</a>
+  <a href="#tarif-spp">7. Tarif SPP</a>
+  <a href="#pembayaran-spp">8. Pembayaran SPP</a>
+  <a href="#riwayat-invoice">9. Riwayat Invoice</a>
+  <a href="#tagihan-tambahan">10. Tagihan Tambahan</a>
+  <a href="#kas">11. Kas Sekolah</a>
+  <a href="#kantin">12. Kantin</a>
+  <a href="#staff">13. Staff & Akun</a>
+  <a href="#kode-akun">14. Kode Akun</a>
+  <a href="#laporan">15. Laporan Keuangan</a>
+  <a href="#audit">16. Audit</a>
+  <a href="#pengaturan">17. Pengaturan Akun</a>
+  <a href="#lampiran">18. Lampiran</a>
+</div>
+
+<div class="main" id="main">
+
+<h1>Manual Pengguna SiPonPes</h1>
+<p style="color:var(--ink-60);font-size:14px;">Sistem Informasi Pondok Pesantren &mdash; Versi 1.0</p>
+
+<!-- ==================== 1. PENDAHULUAN ==================== -->
+<h2 id="pendahuluan">1. Pendahuluan</h2>
+
+<h3>1.1 Tentang SiPonPes</h3>
+<p>SiPonPes adalah sistem manajemen keuangan dan administrasi pondok pesantren berbasis web. Aplikasi ini dirancang untuk membantu pengelolaan:</p>
+<ul>
+  <li>Data santri &amp; kelas</li>
+  <li>Tabungan/wallet santri (top-up, penarikan, limit harian)</li>
+  <li>Tarif SPP (bulanan/semester, per kelas/angkatan/semua)</li>
+  <li>Pembayaran SPP (per santri / massal, dengan deteksi periode otomatis)</li>
+  <li>Invoice &amp; tagihan tambahan</li>
+  <li>Kas sekolah (pemasukan &amp; pengeluaran operasional)</li>
+  <li>Kantin &amp; menu (pembelian dari saldo wallet)</li>
+  <li>Akuntansi &amp; laporan keuangan (jurnal, buku besar, laba rugi, neraca, arus kas)</li>
+  <li>Audit trail (riwayat perubahan data penting)</li>
+</ul>
+
+<h3>1.2 Role (Peran) Pengguna</h3>
+<p>SiPonPes memiliki tiga jenis pengguna dengan hak akses berbeda:</p>
+<table>
+  <tr><th>Role</th><th>Akses Utama</th><th>Untuk Siapa</th></tr>
+  <tr>
+    <td><span class="role-badge role-superadmin">Superadmin</span></td>
+    <td>Semua fitur, kelola semua sekolah, kode akun, audit</td>
+    <td>Pengelola yayasan/induk</td>
+  </tr>
+  <tr>
+    <td><span class="role-badge role-admin">Admin Sekolah</span></td>
+    <td>Fitur operasional sekolah sendiri (santri, spp, kas, kantin)</td>
+    <td>Admin/TU pondok</td>
+  </tr>
+  <tr>
+    <td><span class="role-badge role-kasir">Kasir</span></td>
+    <td>Dashboard, Kantin (catat pembelian)</td>
+    <td>Petugas kantin/koperasi</td>
+  </tr>
+</table>
+
+<h3>1.3 Prinsip Keuangan Penting</h3>
+<blockquote>
+  <strong>Tabungan santri bukan uang sekolah.</strong> Saldo wallet santri adalah titipan (kewajiban sekolah) &mdash; bukan aset bebas pakai. Sekolah tidak boleh menggunakan uang tabungan santri untuk operasional. Baru setelah santri membayar SPP (saldo tabungan dipotong), dana itu menjadi pendapatan sekolah yang sah.
+</blockquote>
+
+
+<!-- ==================== 2. MEMULAI ==================== -->
+<h2 id="memulai">2. Memulai</h2>
+
+<h3>2.1 Login</h3>
+<ol>
+  <li>Buka URL aplikasi (misal <code>http://siponpes.domain</code>).</li>
+  <li>Halaman awal (landing page) akan tampil. Klik tombol <strong>Masuk</strong> di pojok kanan atas.</li>
+  <li>Masukkan email dan password, lalu klik <strong>Masuk</strong>.</li>
+  <li>Setelah login, Anda akan diarahkan ke Dashboard.</li>
+</ol>
+
+<h3>2.2 Registrasi Sekolah Baru</h3>
+<ol>
+  <li>Dari landing page, klik <strong>Daftar</strong>.</li>
+  <li>Isi form: Nama sekolah, Alamat, No. Telepon, Email, Nama Admin, Password.</li>
+  <li>Klik <strong>Daftar</strong>. Sekolah akan tercatat dengan status <strong>Menunggu Persetujuan</strong>.</li>
+  <li>Superadmin akan menyetujui pendaftaran. Setelah disetujui, admin sekolah dapat login.</li>
+  <li>Email verifikasi akan dikirim &mdash; klik tautan di email untuk memverifikasi akun.</li>
+</ol>
+
+<h3>2.3 Verifikasi Email</h3>
+<p>Setelah registrasi atau perubahan email, sistem mengirim email verifikasi. Buka email Anda, klik tautan <strong>Verifikasi Alamat Email</strong>. Jika tidak muncul, klik <strong>Kirim Ulang</strong> di halaman notifikasi verifikasi.</p>
+
+<h3>2.4 Lupa / Reset Password</h3>
+<ol>
+  <li>Di halaman login, klik <strong>Lupa Password?</strong>.</li>
+  <li>Masukkan email terdaftar, klik <strong>Kirim Tautan Reset</strong>.</li>
+  <li>Buka email, klik tautan untuk mereset password.</li>
+  <li>Masukkan password baru &amp; konfirmasi, klik <strong>Reset Password</strong>.</li>
+</ol>
+
+<h3>2.5 Logout</h3>
+<p>Klik foto profil / nama di pojok kanan atas &rarr; <strong>Logout</strong>.</p>
+
+
+<!-- ==================== 3. DASHBOARD ==================== -->
+<h2 id="dashboard">3. Dashboard</h2>
+
+<p>Dashboard menampilkan ringkasan metrik penting:</p>
+<ul>
+  <li>Jumlah total santri</li>
+  <li>Jumlah invoice unpaid / overdue</li>
+  <li>Saldo wallet total &amp; jumlah penarikan hari ini</li>
+  <li>Grafik/ringkasan pembayaran SPP bulan berjalan</li>
+</ul>
+<p><span class="role-badge role-superadmin">Superadmin</span> Dapat memilih sekolah dari dropdown <strong>Pilih Sekolah</strong> di atas untuk melihat dashboard spesifik sekolah.</p>
+<p><span class="role-badge role-admin">Admin Sekolah</span> Langsung melihat dashboard sekolahnya sendiri.</p>
+<p><span class="role-badge role-kasir">Kasir</span> Melihat dashboard terbatas (ringkasan tanpa data sensitif).</p>
+
+
+<!-- ==================== 4. DATA SANTRI ==================== -->
+<h2 id="data-santri">4. Data Santri</h2>
+<p><span class="role-badge role-superadmin">Superadmin</span> <span class="role-badge role-admin">Admin Sekolah</span></p>
+
+<h3>4.1 Daftar Santri</h3>
+<ul>
+  <li>Menu sidebar: <strong>Data Santri</strong>.</li>
+  <li>Tampilan: grid kelas (kartu per kelas). Klik kelas untuk melihat daftar santri di kelas itu.</li>
+  <li>Pencarian: ketik nama / NIS di kolom pencarian &rarr; <strong>Cari</strong>.</li>
+  <li>Export: klik tombol <strong>Export CSV/PDF</strong> untuk mengunduh daftar.</li>
+</ul>
+
+<h3>4.2 Tambah Santri Baru</h3>
+<ol>
+  <li>Di halaman daftar santri, klik <strong>Tambah Santri</strong>.</li>
+  <li>Isi: Nama, NIS (maks 10 karakter, opsional), Jenis Kelamin, Tempat &amp; Tanggal Lahir, Alamat, No. HP Wali, Email (opsional), Kelas.</li>
+  <li>Klik <strong>Simpan</strong>.</li>
+</ol>
+
+<h3>4.3 Edit / Hapus Santri</h3>
+<ul>
+  <li>Di daftar santri, klik tombol <strong>Edit</strong> pada baris santri &rarr; ubah data &rarr; <strong>Simpan</strong>.</li>
+  <li>Klik <strong>Hapus</strong> &rarr; konfirmasi &rarr; santri masuk ke tong sampah (soft delete).</li>
+</ul>
+
+<h3>4.4 Tong Sampah (Trash)</h3>
+<ul>
+  <li>Klik tombol <strong>Tong Sampah</strong> di halaman daftar santri.</li>
+  <li>Lihat santri yang dihapus. Klik <strong>Pulihkan</strong> untuk mengembalikan, atau <strong>Hapus Permanen</strong> untuk menghapus selamanya.</li>
+</ul>
+
+<h3>4.5 Import Santri dari Excel</h3>
+<ol>
+  <li>Klik <strong>Import Excel</strong> di halaman Data Santri.</li>
+  <li>Klik <strong>Download Template</strong> untuk mengunduh file template Excel.</li>
+  <li>Isi template:
+    <ul>
+      <li>Sheet <strong>Siswa</strong>: kolom Nama dan Kelas (wajib).</li>
+      <li>Sheet <strong>S-{Bulan}</strong> (mis. S-Januari): data setoran tabungan per tanggal (kolom angka), dijumlahkan otomatis.</li>
+      <li>Sheet <strong>P-{Bulan}</strong> (mis. P-Januari): data penarikan tabungan per tanggal.</li>
+    </ul>
+  </li>
+  <li>Klik tombol <strong>Import</strong>, pilih file Excel, lalu <strong>Kirim</strong>.</li>
+  <li>Sistem menampilkan ringkasan: santri baru, santri yang sudah ada, kelas baru, transaksi tabungan.</li>
+</ol>
+<blockquote class="info">
+  <strong>Catatan:</strong> Import ulang file yang sama tidak akan menggandakan transaksi. Santri yang sudah terdaftar (nama + kelas) tidak dibuat ulang.
+</blockquote>
+
+
+<!-- ==================== 5. KELAS ==================== -->
+<h2 id="kelas">5. Kelas</h2>
+<p><span class="role-badge role-superadmin">Superadmin</span> <span class="role-badge role-admin">Admin Sekolah</span></p>
+
+<ul>
+  <li>Menu sidebar: <strong>Kelas</strong>.</li>
+  <li>Daftar semua kelas: nama kelas, wali kelas, kapasitas (jumlah santri).</li>
+  <li><strong>Tambah Kelas:</strong> klik <strong>Tambah Kelas</strong> &rarr; isi nama, wali kelas, kapasitas &rarr; <strong>Simpan</strong>.</li>
+  <li><strong>Edit:</strong> klik <strong>Edit</strong> pada baris kelas.</li>
+  <li><strong>Hapus:</strong> klik <strong>Hapus</strong> &rarr; konfirmasi. Kelas tidak bisa dihapus jika masih memiliki santri.</li>
+</ul>
+
+
+<!-- ==================== 6. TABUNGAN SANTRI ==================== -->
+<h2 id="tabungan">6. Tabungan Santri (Wallet)</h2>
+<p><span class="role-badge role-superadmin">Superadmin</span> <span class="role-badge role-admin">Admin Sekolah</span></p>
+
+<blockquote>
+  <strong>Perhatian:</strong> Saldo tabungan santri adalah milik santri/wali yang dititipkan ke sekolah, bukan kas sekolah. Dana ini tidak bisa dipakai untuk operasional sekolah. Baru setelah dibayarkan sebagai SPP, dana menjadi pendapatan sekolah.
+</blockquote>
+
+<h3>6.1 Melihat Saldo</h3>
+<ul>
+  <li>Menu sidebar: <strong>Tabungan Santri</strong>.</li>
+  <li>Tampilan grid kelas dengan total saldo per kelas. Klik kelas untuk lihat detail per santri.</li>
+  <li>Kolom: NIS, Nama, Saldo, Limit Harian, Aksi (isi saldo, tarik, riwayat).</li>
+  <li>Pencarian: ketik nama/NIS &rarr; <strong>Cari</strong>.</li>
+</ul>
+
+<h3>6.2 Top-Up (Isi Saldo)</h3>
+<ol>
+  <li>Klik tombol <strong>Isi Saldo</strong> pada baris santri.</li>
+  <li>Masukkan jumlah nominal, deskripsi opsional, pilih tipe <strong>Isi Saldo (Kredit)</strong>.</li>
+  <li>Klik <strong>Proses</strong>. Saldo bertambah, jurnal otomatis: Dr Kas / Cr Titipan Santri.</li>
+</ol>
+
+<h3>6.3 Penarikan (Tarik Tunai)</h3>
+<ol>
+  <li>Klik tombol <strong>Isi Saldo</strong> pada baris santri.</li>
+  <li>Masukkan jumlah, pilih tipe <strong>Penarikan (Debit)</strong>.</li>
+  <li>Sistem akan memeriksa saldo mencukupi &amp; tidak melebihi limit harian.</li>
+  <li>Klik <strong>Proses</strong>. Saldo berkurang, jurnal: Dr Titipan Santri / Cr Kas.</li>
+</ol>
+
+<h3>6.4 Atur Limit Harian</h3>
+<p>Klik tombol <strong>Limit</strong> pada baris santri &rarr; isi batas maksimal penarikan per hari (0 = unlimited) &rarr; <strong>Simpan</strong>.</p>
+
+<h3>6.5 Riwayat Transaksi</h3>
+<p>Klik nama santri atau tombol <strong>Riwayat</strong> untuk melihat seluruh transaksi (setoran &amp; penarikan) milik santri tersebut.</p>
+
+
+<!-- ==================== 7. TARIF SPP ==================== -->
+<h2 id="tarif-spp">7. Tarif SPP</h2>
+<p><span class="role-badge role-superadmin">Superadmin</span> <span class="role-badge role-admin">Admin Sekolah</span></p>
+
+<h3>7.1 Konsep</h3>
+<p>Tarif SPP menentukan besaran iuran bulanan/semester per santri. Setiap sekolah bisa memiliki banyak tarif dengan kombinasi:</p>
+<ul>
+  <li><strong>Jenis Periode:</strong> Per Bulan atau Per Semester</li>
+  <li><strong>Penerapan:</strong>
+    <ul>
+      <li><strong>Semua Kelas</strong> &mdash; satu tarif untuk seluruh santri</li>
+      <li><strong>Per Angkatan</strong> &mdash; tarif berbeda per angkatan (misal kelas 7, 8, 9)</li>
+      <li><strong>Per Kelas</strong> &mdash; tarif spesifik per kelas (misal kelas 7A, 7B, dst.)</li>
+    </ul>
+  </li>
+  <li><strong>Tahun Ajaran:</strong> format <code>2025/2026</code> (ketik tahun awal, saran terisi otomatis)</li>
+</ul>
+
+<h3>7.2 Tambah Tarif</h3>
+<ol>
+  <li>Menu sidebar: <strong>Tarif SPP</strong> &rarr; <strong>Tambah Tarif</strong>.</li>
+  <li>Isi:
+    <ul>
+      <li><strong>Terapkan ke:</strong> Semua Kelas / Per Angkatan / Per Kelas</li>
+      <li><strong>Jenis Periode:</strong> Per Bulan / Per Semester</li>
+      <li><strong>Kelas / Tingkat:</strong> muncul sesuai pilihan "Terapkan ke"</li>
+      <li><strong>Tahun Ajaran:</strong> mis. 2025/2026</li>
+      <li><strong>Jumlah (Rp):</strong> nominal SPP</li>
+    </ul>
+  </li>
+  <li>Klik <strong>Simpan</strong>.</li>
+</ol>
+
+<h3>7.3 Edit / Hapus Tarif</h3>
+<ul>
+  <li>Di daftar tarif, klik <strong>Edit</strong> atau <strong>Hapus</strong>.</li>
+  <li>Edit: ubah data yang perlu &rarr; <strong>Simpan Perubahan</strong>.</li>
+</ul>
+
+
+<!-- ==================== 8. PEMBAYARAN SPP ==================== -->
+<h2 id="pembayaran-spp">8. Pembayaran SPP</h2>
+<p><span class="role-badge role-superadmin">Superadmin</span> <span class="role-badge role-admin">Admin Sekolah</span></p>
+
+<h3>8.1 Konsep &amp; Alur</h3>
+<p>Menu Pembayaran SPP adalah cara cepat membayar SPP santri. Sistem otomatis menentukan:</p>
+<ul>
+  <li><strong>Periode apa yang harus dibayar</strong> &mdash; berdasarkan invoice paid terakhir santri (tidak bisa double bayar bulan yang sama).</li>
+  <li><strong>Nominal berapa</strong> &mdash; berdasarkan tarif yang cocok (kelas / angkatan / semua).</li>
+  <li><strong>Tahun</strong> mengikuti tahun ajaran dari tarif SPP.</li>
+</ul>
+<p>Pembayaran memotong saldo tabungan (wallet) santri &rarr; jurnal: Dr Titipan Santri / Cr Pendapatan SPP.</p>
+
+<h3>8.2 Bayar Per Santri</h3>
+<ol>
+  <li>Menu sidebar: <strong>Pembayaran SPP</strong>.</li>
+  <li>Pilih sekolah (superadmin), lalu pilih kelas.</li>
+  <li>Tabel menampilkan: Nama, NIS, Saldo Wallet, Tarif, Periode (otomatis), Tombol Bayar.</li>
+  <li>Jika saldo <strong>cukup</strong> &rarr; klik <strong>Bayar</strong> (hijau).</li>
+  <li>Jika saldo <strong>kurang</strong> &rarr; tombol <strong>Saldo Kurang</strong> (kuning) akan mengarahkan ke halaman top-up wallet santri tersebut.</li>
+</ol>
+
+<h3>8.3 Bayar Massal Per Kelas</h3>
+<ol>
+  <li>Setelah pilih kelas, di sebelah kanan tombol Cari, pilih periode dari dropdown (bulanan: Juli, Agustus... atau semester).</li>
+  <li>Klik <strong>Bayar</strong>. Konfirmasi: "Bayar SPP [periode] untuk semua santri bersaldo cukup?"</li>
+  <li>Sistem membayar semua santri di kelas itu yang:
+    <ul>
+      <li>Memiliki saldo cukup</li>
+      <li>Belum bayar untuk periode itu</li>
+    </ul>
+  </li>
+</ol>
+
+<h3>8.4 Bayar Massal Semua Kelas</h3>
+<ol>
+  <li>Di halaman utama Pembayaran SPP (sebelum pilih kelas), terdapat card <strong>Bayar Massal</strong>.</li>
+  <li>Pilih periode, klik <strong>Bayar</strong>. Sistem membayar seluruh santri bersaldo cukup di semua kelas.</li>
+</ol>
+
+<h3>8.5 Navigasi</h3>
+<p>Saat sudah memilih kelas, breadcrumb menampilkan: <code>Dashboard / Pembayaran SPP / Kelas X</code>. Klik <strong>Pembayaran SPP</strong> untuk kembali ke daftar kelas.</p>
+
+
+<!-- ==================== 9. RIWAYAT INVOICE ==================== -->
+<h2 id="riwayat-invoice">9. Riwayat Invoice</h2>
+<p><span class="role-badge role-superadmin">Superadmin</span> <span class="role-badge role-admin">Admin Sekolah</span></p>
+
+<h3>9.1 Tab SPP Reguler &amp; Tagihan Tambahan</h3>
+<ul>
+  <li><strong>SPP Reguler:</strong> invoice yang dibuat otomatis saat pembayaran SPP (dari menu Pembayaran SPP).</li>
+  <li><strong>Tagihan Tambahan:</strong> invoice manual yang dibuat lewat tombol <strong>Tambah Invoice</strong> (biaya pendaftaran, denda, kegiatan, dll.)</li>
+</ul>
+
+<h3>9.2 Filter &amp; Pencarian</h3>
+<ul>
+  <li><strong>Filter kelas:</strong> klik pill kelas (7A, 7B, dst.) untuk menampilkan invoice santri kelas itu.</li>
+  <li><strong>Status:</strong> Semua, Belum Dibayar, Lunas, Kedaluwarsa, Overdue, Jatuh Tempo 7 Hari.</li>
+  <li><strong>Tanggal:</strong> filter berdasarkan <strong>Jatuh Tempo</strong> (dari tanggal &ndash; sampai tanggal).</li>
+  <li><strong>Pencarian:</strong> cari nomor invoice, nama santri, NIS.</li>
+  <li><strong>Sekolah:</strong> filter khusus superadmin.</li>
+</ul>
+
+<h3>9.3 Aksi per Invoice</h3>
+<ul>
+  <li><strong>Detail:</strong> lihat informasi lengkap invoice &amp; item.</li>
+  <li><strong>Bayar:</strong> bayar invoice dari saldo wallet (jika saldo cukup).</li>
+  <li><strong>Kirim Pengingat:</strong> kirim email/WA pengingat ke wali santri.</li>
+  <li><strong>Hapus:</strong> hapus invoice (hanya yang belum dibayar).</li>
+  <li><strong>Cetak PDF:</strong> dari halaman detail, klik <strong>Cetak Bukti</strong>.</li>
+</ul>
+
+<h3>9.4 Kirim Pengingat Massal</h3>
+<p>Klik <strong>Kirim Pengingat</strong> (pojok kanan atas) &rarr; pilih:</p>
+<ul>
+  <li><strong>Kirim Pengingat Overdue</strong> &mdash; kirim ke semua invoice unpaid yang sudah lewat jatuh tempo.</li>
+  <li><strong>Kirim ke Semua Belum Dibayar</strong> &mdash; kirim ke semua invoice unpaid (termasuk yang belum jatuh tempo).</li>
+</ul>
+<blockquote class="info">
+  Pengingat ke invoice yang sama dalam 24 jam terakhir dilewati otomatis (tidak dikirim duplikat).
+</blockquote>
+
+<h3>9.5 Export</h3>
+<ul>
+  <li><strong>Export CSV:</strong> unduh daftar invoice sebagai file Excel/CSV.</li>
+  <li><strong>Export PDF:</strong> unduh daftar invoice sebagai PDF.</li>
+</ul>
+
+
+<!-- ==================== 10. TAGIHAN TAMBAHAN ==================== -->
+<h2 id="tagihan-tambahan">10. Tagihan Tambahan (Tambah Invoice)</h2>
+<p><span class="role-badge role-superadmin">Superadmin</span> <span class="role-badge role-admin">Admin Sekolah</span></p>
+
+<h3>10.1 Buat Tagihan Baru</h3>
+<ol>
+  <li>Buka tab <strong>Tagihan Tambahan</strong> di halaman Riwayat Invoice, atau klik <strong>Tambah Invoice</strong>.</li>
+  <li>Pilih santri (nama / kelas), isi deskripsi tagihan, jumlah (Rp), tanggal jatuh tempo.</li>
+  <li>Klik <strong>Simpan</strong>. Invoice tersimpan dengan status <strong>Belum Dibayar</strong>.</li>
+  <li>Invoice ini hanya muncul di tab <strong>Tagihan Tambahan</strong> (tidak tercampur SPP reguler).</li>
+</ol>
+
+<h3>10.2 Pembayaran Tagihan Tambahan</h3>
+<ul>
+  <li>Buka detail invoice &rarr; klik <strong>Bayar dengan Wallet</strong> &rarr; saldo tabungan santri dipotong, jurnal: Dr Titipan Santri / Cr Pendapatan (akun 4030).</li>
+</ul>
+
+
+<!-- ==================== 11. KAS SEKOLAH ==================== -->
+<h2 id="kas">11. Kas Sekolah</h2>
+<p><span class="role-badge role-superadmin">Superadmin</span> <span class="role-badge role-admin">Admin Sekolah</span></p>
+
+<blockquote>
+  <strong>Perhatian:</strong> Kas sekolah mencatat uang milik sekolah sendiri (dari pendapatan SPP, dana BOS, pemasukan lain), terpisah dari tabungan santri. Tabungan santri tidak bisa dipakai untuk operasional sekolah.
+</blockquote>
+
+<h3>11.1 Catat Transaksi Baru</h3>
+<ol>
+  <li>Menu sidebar: <strong>Kas Sekolah</strong> &rarr; <strong>Catat Transaksi</strong>.</li>
+  <li>Pilih tipe: <strong>Pemasukan</strong> (uang masuk) atau <strong>Pengeluaran</strong> (uang keluar).</li>
+  <li>Pilih akun yang sesuai (contoh: Beban Listrik, Operasional, dll.).</li>
+  <li>Isi jumlah, deskripsi, tanggal.</li>
+  <li>Klik <strong>Simpan</strong>. Jurnal otomatis dibuat.</li>
+</ol>
+
+<h3>11.2 Edit / Hapus Transaksi</h3>
+<ul>
+  <li>Di tabel Kas, klik <strong>Edit</strong> untuk mengubah transaksi. Jurnal lama dihapus, jurnal baru dibuat.</li>
+  <li>Klik <strong>Hapus</strong> &rarr; transaksi dihapus (soft delete).</li>
+  <li>Lihat riwayat penghapusan di menu <strong>Seluruh Riwayat</strong>.</li>
+</ul>
+
+<h3>11.3 Export</h3>
+<p>Export PDF / Excel dari tombol di pojok kanan atas halaman Kas.</p>
+
+
+<!-- ==================== 12. KANTIN ==================== -->
+<h2 id="kantin">12. Kantin</h2>
+
+<h3>12.1 Kelola Kantin &amp; Menu <span class="role-badge role-superadmin">Superadmin</span> <span class="role-badge role-admin">Admin Sekolah</span></h3>
+<ul>
+  <li>Menu sidebar: <strong>Kelola Kantin</strong>.</li>
+  <li><strong>Tambah Kantin:</strong> isi nama kantin &rarr; <strong>Simpan</strong>.</li>
+  <li><strong>Aktif/Nonaktif:</strong> toggle switch untuk menonaktifkan kantin (tidak bisa transaksi).</li>
+  <li><strong>Hapus:</strong> hapus kantin (soft delete). Klik nama kantin di tabel <strong>Kantin Dihapus</strong> untuk pulihkan.</li>
+  <li>Klik nama kantin &rarr; kelola menu:
+    <ul>
+      <li><strong>Tambah Menu:</strong> nama, harga, stok, satuan (pcs, porsi, gelas, dll.).</li>
+      <li><strong>Edit:</strong> ubah harga, stok, nama.</li>
+      <li><strong>Hapus:</strong> hapus menu (soft delete).</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>12.2 Catat Pembelian <span class="role-badge role-kasir">Kasir</span> <span class="role-badge role-admin">Admin Sekolah</span></h3>
+<ol>
+  <li>Menu sidebar: <strong>Kantin</strong>.</li>
+  <li>Cari santri (pilih dari daftar atau ketik nama).</li>
+  <li>Pilih kantin &amp; menu, masukkan jumlah item. Bisa tambah banyak item.</li>
+  <li>Pilih metode bayar:
+    <ul>
+      <li><strong>Wallet</strong> &mdash; potong saldo tabungan santri (jurnal: Dr Titipan Santri / Cr Pendapatan Kantin).</li>
+      <li><strong>Tunai</strong> &mdash; catat sebagai pemasukan kas (Dr Kas / Cr Pendapatan Kantin).</li>
+    </ul>
+  </li>
+  <li>Klik <strong>Bayar</strong>. Stok menu otomatis berkurang.</li>
+</ol>
+<blockquote class="info">
+  Jika saldo wallet tidak cukup, pembayaran via wallet akan ditolak. Gunakan metode Tunai atau isi saldo terlebih dahulu.
+</blockquote>
+
+<h3>12.3 Rekap Penjualan</h3>
+<p>Menu sidebar: <strong>Rekap Kantin</strong> &rarr; ringkasan penjualan per kantin &amp; per menu dalam periode tertentu.</p>
+
+
+<!-- ==================== 13. STAFF & AKUN ==================== -->
+<h2 id="staff">13. Staff &amp; Akun</h2>
+
+<h3>13.1 Kelola Staff (Admin Sekolah) <span class="role-badge role-admin">Admin Sekolah</span></h3>
+<ul>
+  <li>Menu sidebar: <strong>Staff</strong>.</li>
+  <li>Daftar akun admin &amp; kasir di sekolah Anda.</li>
+  <li><strong>Tambah:</strong> email, nama, role (Admin / Kasir) &rarr; password acak dibuat otomatis &rarr; <strong>Simpan</strong>.</li>
+  <li><strong>Reset Password:</strong> klik tombol reset &rarr; password baru ditampilkan (catat &amp; berikan ke pengguna).</li>
+  <li><strong>Hapus:</strong> hapus akun staff (tidak bisa hapus diri sendiri / admin lain).</li>
+</ul>
+
+<h3>13.2 Kelola Sekolah <span class="role-badge role-superadmin">Superadmin</span></h3>
+<ul>
+  <li>Menu sidebar: <strong>Sekolah</strong>.</li>
+  <li>Daftar semua sekolah terdaftar, status, jumlah santri, dll.</li>
+  <li><strong>Setujui / Tolak:</strong> untuk pendaftaran sekolah baru.</li>
+  <li><strong>Reset Password Sekolah:</strong> klik tombol reset &rarr; password admin sekolah direset.</li>
+  <li><strong>Nonaktifkan:</strong> ubah status sekolah menjadi nonaktif &rarr; admin sekolah tidak bisa login.</li>
+  <li><strong>Hapus Permanen:</strong> hapus sekolah beserta semua data (santri, wallet, dll.) &rarr; perlu konfirmasi dengan mengetik "HAPUS".</li>
+</ul>
+
+
+<!-- ==================== 14. KODE AKUN ==================== -->
+<h2 id="kode-akun">14. Kode Akun (Akuntansi)</h2>
+<p><span class="role-badge role-superadmin">Superadmin</span></p>
+<ul>
+  <li>Menu sidebar: <strong>Kode Akun</strong>.</li>
+  <li>Daftar seluruh kode akun yang digunakan dalam jurnal &amp; laporan keuangan.</li>
+  <li><strong>Tambah Akun Baru:</strong> kode (contoh: 6010), nama akun, kategori/tipenya.</li>
+  <li><strong>Edit / Hapus:</strong> hanya jika akun belum pernah digunakan dalam jurnal.</li>
+</ul>
+<p>Kode akun standar yang sudah ada:</p>
+<table>
+  <tr><th>Kode</th><th>Nama</th><th>Tipe</th></tr>
+  <tr><td>1010</td><td>Kas</td><td>Aset</td></tr>
+  <tr><td>2010</td><td>Titipan Santri</td><td>Kewajiban</td></tr>
+  <tr><td>3010</td><td>Laba Ditahan</td><td>Ekuitas</td></tr>
+  <tr><td>4010</td><td>Pendapatan Kantin</td><td>Pendapatan</td></tr>
+  <tr><td>4020</td><td>Pendapatan SPP</td><td>Pendapatan</td></tr>
+  <tr><td>4030</td><td>Pendapatan Lain-lain</td><td>Pendapatan</td></tr>
+  <tr><td>5010</td><td>Beban Listrik &amp; Air</td><td>Beban</td></tr>
+  <tr><td>5020</td><td>Beban Operasional</td><td>Beban</td></tr>
+  <tr><td>5030</td><td>Beban Seragam &amp; Perlengkapan</td><td>Beban</td></tr>
+  <tr><td>5040</td><td>Beban Kesejahteraan / Gaji</td><td>Beban</td></tr>
+  <tr><td>5050</td><td>Beban Lain-lain</td><td>Beban</td></tr>
+</table>
+
+
+<!-- ==================== 15. LAPORAN KEUANGAN ==================== -->
+<h2 id="laporan">15. Laporan Keuangan</h2>
+<p><span class="role-badge role-superadmin">Superadmin</span> <span class="role-badge role-admin">Admin Sekolah</span></p>
+
+<h3>15.1 Jurnal Umum</h3>
+<p>Daftar seluruh transaksi jurnal secara kronologis. Filter: sekolah (superadmin), periode tanggal. Export PDF/Excel.</p>
+
+<h3>15.2 Buku Besar</h3>
+<p>Mutasi per akun. Pilih akun, lihat saldo awal, debit/kredit, saldo akhir. Export PDF/Excel.</p>
+
+<h3>15.3 Neraca Saldo</h3>
+<p>Ringkasan saldo debit &amp; kredit seluruh akun pada periode tertentu. Export PDF/Excel.</p>
+
+<h3>15.4 Laporan Laba / Rugi</h3>
+<p>Ringkasan pendapatan &amp; beban. Menghitung surplus/defisit (laba/rugi) pondok pesantren.</p>
+
+<h3>15.5 Neraca</h3>
+<p>Posisi aset, kewajiban, dan ekuitas pada akhir periode.</p>
+
+<h3>15.6 Arus Kas</h3>
+<p>Penerimaan &amp; pengeluaran kas pada periode terpilih.</p>
+
+<h3>15.7 Jurnal Penyesuaian &amp; Tutup Buku</h3>
+<ul>
+  <li><strong>Jurnal Penyesuaian:</strong> catat jurnal manual untuk penyesuaian akuntansi (pastikan balance: total debit = total kredit).</li>
+  <li><strong>Tutup Buku:</strong> memindahkan saldo pendapatan &amp; beban ke akun Laba Ditahan (3010) &rarr; periode dianggap selesai &rarr; saldo akun nominal kembali nol untuk periode baru.</li>
+</ul>
+<blockquote class="warn">
+  Tutup Buku hanya boleh dilakukan sekali per periode. Setelah ditutup, jurnal periode sebelumnya tidak bisa diubah.
+</blockquote>
+
+
+<!-- ==================== 16. AUDIT ==================== -->
+<h2 id="audit">16. Audit</h2>
+<p><span class="role-badge role-superadmin">Superadmin</span> <span class="role-badge role-admin">Admin Sekolah</span></p>
+<ul>
+  <li>Menu sidebar: <strong>Audit</strong>.</li>
+  <li>Riwayat perubahan data penting: siapa yang mengubah apa, kapan, data lama &rarr; baru.</li>
+  <li>Filter: aksi (buat/ubah/hapus), model (santri, invoice, dll.), pencarian.</li>
+</ul>
+
+
+<!-- ==================== 17. PENGATURAN AKUN ==================== -->
+<h2 id="pengaturan">17. Pengaturan Akun</h2>
+
+<h3>17.1 Profil Pengguna</h3>
+<p>Klik foto profil / nama di pojok kanan atas &rarr; <strong>Profil</strong>. Ubah nama, email. Jika email diubah, verifikasi ulang diperlukan.</p>
+
+<h3>17.2 Ubah Password</h3>
+<p>Dari halaman Profil &rarr; <strong>Ubah Password</strong>. Masukkan password lama, password baru, konfirmasi &rarr; <strong>Simpan</strong>.</p>
+
+<h3>17.3 Profil Sekolah <span class="role-badge role-admin">Admin Sekolah</span></h3>
+<p>Menu sidebar: <strong>Profil Sekolah</strong>. Ubah informasi sekolah (nama, alamat, telepon, email). Perubahan langsung tampil di header laporan.</p>
+
+
+<!-- ==================== 18. LAMPIRAN ==================== -->
+<h2 id="lampiran">18. Lampiran</h2>
+
+<h3>18.1 FAQ</h3>
+
+<h4>Q: Kok saldo tabungan santri tidak bisa dipakai untuk bayar operasional?</h4>
+<p><strong>A:</strong> Betul. Saldo tabungan santri adalah titipan (kewajiban) &mdash; bukan pendapatan sekolah. Uang yang diterima dari wali dicatat sebagai utang ke santri (akun 2010). Baru saat santri membayar SPP, uang berpindah ke pendapatan sekolah (akun 4020) dan sah digunakan.</p>
+
+<h4>Q: Apakah bisa membuat tagihan dengan nominal yang berbeda-beda antar santri?</h4>
+<p><strong>A:</strong> Ya. Untuk tagihan yang jumlahnya beda per santri, gunakan menu <strong>Tambah Invoice</strong> (Tagihan Tambahan). Untuk SPP dengan nominal berbeda per kelas/angkatan, gunakan Tarif SPP dengan penerapan "Per Kelas" atau "Per Angkatan".</p>
+
+<h4>Q: Kenapa di Pembayaran SPP periode yang muncul hanya tertentu?</h4>
+<p><strong>A:</strong> Sistem otomatis mendeteksi periode yang <strong>belum dibayar</strong> oleh santri tersebut. Jika Januari sudah lunas, maka periode selanjutnya (Februari) yang ditawarkan. Tidak bisa double bayar.</p>
+
+<h4>Q: Bagaimana cara mengubah tahun ajaran di tarif SPP?</h4>
+<p><strong>A:</strong> Edit tarif yang ada, ubah tahun ajaran, lalu simpan. Atau buat tarif baru dengan tahun ajaran yang baru.</p>
+
+<h4>Q: Saya sudah membayar SPP lewat menu Pembayaran SPP, kenapa tidak muncul di laporan keuangan?</h4>
+<p><strong>A:</strong> Pembayaran SPP dari menu itu akan langsung tercatat di jurnal (pendapatan SPP) dan muncul di Riwayat Invoice tab SPP Reguler. Periksa filter tanggal di laporan keuangan &mdash; pastikan periode yang dipilih sesuai.</p>
+
+<h4>Q: Bisakah import Excel diulang? Takut ganda.</h4>
+<p><strong>A:</strong> Import ulang file yang sama tidak akan menggandakan transaksi. Sistem mendeteksi transaksi yang sudah ada berdasarkan deskripsi "Setoran tabungan bulan X (import)". Santri yang sudah terdaftar (nama + kelas) tidak dibuat ulang.</p>
+
+<h4>Q: Lupa password?</h4>
+<p><strong>A:</strong> Di halaman login, klik <strong>Lupa Password?</strong> &rarr; masukkan email &rarr; tautan reset dikirim ke email. Jika akun staff / admin sekolah lupa password, admin bisa mereset dari menu Staff.</p>
+
+<hr>
+
+<p style="text-align:center;color:var(--ink-40);font-size:13px;margin-top:60px;">
+  &copy; 2026 SiPonPes &mdash; Manual Pengguna versi 1.0 &mdash; Dokumen ini diperbarui otomatis mengikuti aplikasi.
+</p>
+
+</div>
+
+<script>
+  // highlight current section in sidebar
+  (function(){
+    const links = document.querySelectorAll('.sidebar a');
+    const sections = [];
+    links.forEach(a => {
+      const id = a.getAttribute('href').replace('#','');
+      const el = document.getElementById(id);
+      if(el) sections.push({a, el, id});
+    });
+    function update(){
+      let current = null;
+      sections.forEach(s => {
+        const rect = s.el.getBoundingClientRect();
+        if(rect.top <= 100) current = s;
+      });
+      sections.forEach(s => s.a.classList.toggle('highlight', s === current));
+    }
+    window.addEventListener('scroll', update);
+    update();
+  })();
+</script>
+
+</body>
+</html>

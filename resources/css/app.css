@@ -1,0 +1,315 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+
+    --color-pine-50: #f1f6f1;
+    --color-pine-100: #dfebdf;
+    --color-pine-200: #c0d7c3;
+    --color-pine-300: #97bb9e;
+    --color-pine-400: #689a73;
+    --color-pine-500: #467d54;
+    --color-pine-600: #2f6340;
+    --color-pine-700: #24503a;
+    --color-pine-800: #1c3f2e;
+    --color-pine-900: #143025;
+    --color-pine-950: #0b1f18;
+
+    --color-cream: #f6f1e4;
+    --color-paper: #fffdf7;
+    --color-ink: #2b2923;
+    --color-gold-50: #fbf6e9;
+    --color-gold-100: #f3e8c8;
+    --color-gold-300: #dcbf6e;
+    --color-gold-400: #c9a64a;
+    --color-gold-500: #b88a2e;
+    --color-gold-600: #9c701f;
+    --color-gold-700: #7d5818;
+}
+
+@custom-variant even (&:nth-child(even));
+
+/* ---------------------------------- */
+/* Komponen reusable aplikasi          */
+/* ---------------------------------- */
+@layer components {
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors duration-150 cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
+    }
+    .btn-sm {
+        @apply text-xs px-2.5 py-1.5;
+    }
+    .btn-md {
+        @apply text-sm px-4 py-2;
+    }
+    .btn-lg {
+        @apply text-base px-6 py-3;
+    }
+    .btn-gold {
+        @apply bg-gold-500 text-pine-950 hover:bg-gold-400 active:bg-gold-600;
+    }
+    .btn-primary {
+        @apply bg-pine-700 text-white hover:bg-pine-800 active:bg-pine-900;
+    }
+    .btn-secondary {
+        @apply bg-pine-100 text-pine-900 hover:bg-pine-200 active:bg-pine-300;
+    }
+    .btn-danger {
+        @apply bg-rose-700 text-white hover:bg-rose-800 active:bg-rose-900;
+    }
+    .btn-warning {
+        @apply bg-gold-500 text-white hover:bg-gold-600 active:bg-gold-700;
+    }
+    .btn-ghost {
+        @apply bg-paper text-ink border border-ink/15 hover:bg-cream;
+    }
+    .btn-info {
+        @apply bg-sky-700 text-white hover:bg-sky-800 active:bg-sky-900;
+    }
+    .btn-group {
+        @apply inline-flex items-center rounded-lg border border-ink/15 overflow-hidden;
+    }
+    .btn-group .btn {
+        @apply rounded-none border-0;
+    }
+    .btn-group .btn:hover {
+        @apply bg-cream;
+    }
+
+    .card {
+        @apply bg-paper rounded-xl shadow-sm border border-ink/10;
+    }
+    .card-body {
+        @apply p-6;
+    }
+
+    .stat-card {
+        @apply bg-paper rounded-xl shadow-sm border border-ink/10 p-5 flex flex-col justify-between gap-3 min-h-[7rem] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md;
+    }
+    .stat-card-label {
+        @apply text-xs font-semibold uppercase tracking-wider text-ink/60;
+    }
+    .stat-card-value {
+        @apply font-display text-3xl font-semibold text-pine-900 tabular-nums leading-tight break-words;
+    }
+    .stat-card-sub {
+        @apply text-xs text-ink/50 mt-1 break-words;
+    }
+
+    .page-header {
+        @apply flex flex-col gap-4 mb-6 sm:flex-row sm:items-center sm:justify-between;
+    }
+    .page-title {
+        @apply font-display text-2xl font-semibold text-pine-900;
+    }
+    .page-title-rule {
+        @apply mt-2 flex items-center gap-2;
+    }
+    .page-title-rule::before,
+    .page-title-rule::after {
+        content: '';
+        @apply h-px bg-ink/20 flex-1;
+    }
+    .page-subtitle {
+        @apply text-sm text-ink/60 mt-1.5;
+    }
+    .page-actions {
+        @apply flex flex-wrap items-center gap-3 flex-shrink-0;
+    }
+
+    .breadcrumb {
+        @apply flex flex-wrap items-center gap-2 text-sm text-ink/60 mb-4;
+    }
+    .breadcrumb-link {
+        @apply text-pine-700 hover:text-pine-800 hover:underline font-medium;
+    }
+
+    .input,
+    .select,
+    .textarea {
+        @apply w-full border border-ink/20 rounded-lg px-3 py-2 text-sm text-ink bg-paper placeholder:text-ink/40 focus:outline-none focus:ring-2 focus:ring-pine-500 focus:border-pine-500 transition-shadow;
+    }
+    .input-sm,
+    .select-sm {
+        @apply border border-ink/20 rounded-lg px-2 py-1 text-sm text-ink bg-paper placeholder:text-ink/40 focus:outline-none focus:ring-2 focus:ring-pine-500 focus:border-pine-500 transition-shadow;
+    }
+    .label {
+        @apply block text-sm font-medium text-pine-900 mb-1.5;
+    }
+
+    .password-toggle {
+        @apply absolute right-1.5 top-1/2 -translate-y-1/2 p-1.5 rounded-md text-ink/50 hover:text-pine-700 hover:bg-pine-50 transition-colors;
+    }
+
+    .table-card {
+        @apply bg-paper rounded-xl shadow-sm border border-ink/10 overflow-hidden;
+    }
+    .th {
+        @apply px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-pine-800 bg-pine-50;
+    }
+    .td {
+        @apply px-4 py-3 text-sm text-ink;
+    }
+    .table-row {
+        @apply border-t border-ink/10 hover:bg-pine-50/50 transition-colors;
+    }
+
+    .badge {
+        @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium whitespace-nowrap;
+    }
+    .badge-green {
+        @apply bg-pine-100 text-pine-900;
+    }
+    .badge-red {
+        @apply bg-rose-100 text-rose-800;
+    }
+    .badge-yellow {
+        @apply bg-gold-100 text-gold-700;
+    }
+    .badge-blue {
+        @apply bg-sky-100 text-sky-800;
+    }
+    .badge-rose {
+        @apply bg-rose-100 text-rose-800;
+    }
+    .badge-slate {
+        @apply bg-ink/10 text-ink/70;
+    }
+
+    .flash {
+        @apply px-4 py-3 rounded-lg mb-4 text-sm font-medium border;
+    }
+    .flash-success {
+        @apply bg-pine-50 border-pine-200 text-pine-900;
+    }
+    .flash-error {
+        @apply bg-rose-50 border-rose-200 text-rose-800;
+    }
+    .flash-info {
+        @apply bg-blue-50 border-blue-200 text-blue-800;
+    }
+    .flash-warning {
+        @apply bg-gold-50 border-gold-300 text-gold-700;
+    }
+
+    .kv-label {
+        @apply text-sm text-ink/60;
+    }
+    .kv-value {
+        @apply font-semibold text-lg text-ink tabular-nums;
+    }
+
+    .school-select {
+        @apply rounded-xl bg-paper border border-ink/10 p-5 hover:shadow-md hover:-translate-y-0.5 hover:border-pine-400 transition-all duration-200 block;
+    }
+
+    /* Sidebar */
+    .sidebar-link {
+        @apply relative flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors duration-150 mb-0.5 whitespace-nowrap overflow-hidden;
+    }
+    .sidebar-link-active {
+        @apply bg-pine-700 text-white font-semibold shadow-md shadow-pine-950/30;
+    }
+    .sidebar-active-bar {
+        @apply absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-gold-400;
+    }
+    .nav-icon {
+        @apply w-5 h-5 shrink-0 text-pine-300/70 transition-colors duration-150;
+    }
+    .sidebar-link:hover .nav-icon,
+    .sidebar-link-active .nav-icon {
+        @apply text-gold-300;
+    }
+    .sidebar-section {
+        @apply px-3 pt-5 pb-2 mt-4 border-t border-white/10 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-gold-300/80 whitespace-nowrap overflow-hidden;
+    }
+    .sidebar-section:first-of-type {
+        @apply border-t-0 mt-0 pt-4;
+    }
+    .sidebar-scroll {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(220, 191, 110, 0.35) transparent;
+    }
+    .sidebar-scroll::-webkit-scrollbar {
+        width: 5px;
+    }
+    .sidebar-scroll::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .sidebar-scroll::-webkit-scrollbar-thumb {
+        background-color: rgba(220, 191, 110, 0.3);
+        border-radius: 9999px;
+    }
+    .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(220, 191, 110, 0.5);
+    }
+
+    /* Sidebar mode ikon (collapsed): hanya logo + ikon menu */
+    .sidebar-collapsed .sidebar-brand {
+        @apply items-center justify-center px-0;
+    }
+    .sidebar-collapsed .sidebar-brand .min-w-0 {
+        @apply hidden;
+    }
+    .sidebar-collapsed .sidebar-brand-motif {
+        @apply hidden;
+    }
+    .sidebar-collapsed .sidebar-scroll {
+        @apply px-2;
+    }
+    .sidebar-collapsed .sidebar-link {
+        @apply justify-start px-2 gap-0 text-[0px];
+    }
+    .sidebar-collapsed .sidebar-link .ml-auto {
+        @apply hidden;
+    }
+    .sidebar-collapsed .sidebar-section {
+        @apply justify-center gap-0 px-0 text-[0px];
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: clip;
+}
+
+body {
+    overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* ---------------------------------- */
+/* Micro-interaksi                     */
+/* ---------------------------------- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+main > section {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    main > section {
+        animation: none;
+    }
+    * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+[x-cloak] { display: none !important; }
