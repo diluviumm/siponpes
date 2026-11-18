@@ -82,7 +82,7 @@
                                         <span class="badge badge-red">Habis</span>
                                     @endif
                                 </td>
-                                <td class="td text-center whitespace-nowrap">
+                                <td class="td text-center whitespace-nowrap sticky right-0 bg-white shadow-[-6px_0_8px_-6px_rgba(0,0,0,0.15)]">
                                     <form id="update-item-{{ $item->id }}" method="POST" action="{{ route('kantin.item.update', $item) }}" class="hidden">
                                         @csrf
                                         @method('PUT')
