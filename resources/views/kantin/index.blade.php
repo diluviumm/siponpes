@@ -84,7 +84,7 @@
     <div x-data="kasirModal()" x-init="init()">
         <div class="table-card">
             <div class="overflow-x-auto">
-                <table class="min-w-full text-sm">
+                <table class="min-w-[640px] text-sm">
                     <thead class="bg-cream">
                         <tr>
                             <th class="th">NIS</th>
@@ -372,10 +372,10 @@
                 'balance' => (float) ($s->wallet?->balance ?? 0),
                 'limit' => (float) ($s->wallet?->daily_spending_limit ?? 0),
             ],
-        ])->toJson();
+        ])->all();
     @endphp
     window.__canteenMenu = {!! $menuJson !!};
-    window.__kasirSantris = {!! $santrisJson !!};
+    window.__kasirSantris = @json($santrisJson);
 
     window.__kasirFailed = @json(session()->has('error'));
 

@@ -43,7 +43,7 @@
     </div>
 
     <form method="POST" action="{{ route('financial.adjusting.store') }}"
-          x-data="adjustingForm()" @@submit="return validate()" class="card card-body mb-6">
+          x-data="adjustingForm()" @@submit="validate()" class="card card-body mb-6">
         @csrf
         <input type="hidden" name="branch_id" value="{{ $school->id }}">
 

@@ -47,7 +47,7 @@ class CanteenApiController extends Controller
 
         if (! $santri) {
             Log::warning('Canteen transaction failed: invalid card token.', [
-                'card_token' => $request->input('santri_card_token'),
+                'card_token_hash' => hash('sha256', (string) $request->input('santri_card_token')),
                 'canteen_name' => $request->input('canteen_name'),
             ]);
 

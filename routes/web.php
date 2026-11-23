@@ -40,7 +40,7 @@ Route::middleware('guest')->group(function () {
     Route::get('forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
     Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->middleware('throttle:5,10')->name('password.email');
     Route::get('reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-    Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('password.store');
+    Route::post('reset-password', [ResetPasswordController::class, 'reset'])->middleware('throttle:5,10')->name('password.store');
 });
 
 Route::get('email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])->middleware('signed')->name('verification.verify');

@@ -258,7 +258,6 @@
     </div>
 @endif
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var ctx = document.getElementById('trendChart');

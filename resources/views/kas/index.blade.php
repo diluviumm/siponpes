@@ -205,13 +205,13 @@
                     ->values()
                     ->all(),
             ])->values()->all()];
-        })->toJson();
+        })->all();
     @endphp
 
     </div>
 
     <script>
-        window.__kasRiwayat = {!! $riwayatJson !!};
+        window.__kasRiwayat = @json($riwayatJson);
 
         window.riwayatModal = function () {
             return {

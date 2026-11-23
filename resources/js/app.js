@@ -205,6 +205,13 @@ document.addEventListener('submit', function (event) {
 }, true);
 
 window.siponpesConfirm = function (event, message, options) {
+    // Submit kedua berasal dari submitConfirmedForm setelah konfirmasi diterima.
+    // Tanpa penjaga ini, handler inline onsubmit membuka modal lagi dan
+    // membatalkan submit — pengguna melihat tombol "tidak ada aksi".
+    if (event.target instanceof HTMLFormElement && event.target.dataset.confirmed === '1') {
+        return true;
+    }
+
     event.preventDefault();
     event.stopPropagation();
 

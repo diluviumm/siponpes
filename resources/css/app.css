@@ -55,6 +55,9 @@
     .btn-gold {
         @apply bg-gold-500 text-pine-950 hover:bg-gold-400 active:bg-gold-600;
     }
+    .btn-accent {
+        @apply inline-flex items-center justify-center gap-2 rounded-lg bg-gold-500 text-pine-950 text-sm px-4 py-2 font-semibold shadow-sm transition-colors duration-150 cursor-pointer select-none hover:bg-gold-400 hover:shadow-md active:bg-gold-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
+    }
     .btn-primary {
         @apply bg-pine-700 text-white hover:bg-pine-800 active:bg-pine-900;
     }
@@ -106,6 +109,9 @@
     .page-header {
         @apply flex flex-col gap-4 mb-6 sm:flex-row sm:items-center sm:justify-between;
     }
+    .page-header > * {
+        min-width: 0;
+    }
     .page-title {
         @apply font-display text-2xl font-semibold text-pine-900;
     }
@@ -121,7 +127,7 @@
         @apply text-sm text-ink/60 mt-1.5;
     }
     .page-actions {
-        @apply flex flex-wrap items-center gap-3 flex-shrink-0;
+        @apply flex flex-wrap items-center gap-3 max-w-full;
     }
 
     .breadcrumb {
@@ -313,3 +319,16 @@ main > section {
 }
 
 [x-cloak] { display: none !important; }
+
+/* ---------------------------------- */
+/* Kontras teks (WCAG AA)              */
+/* Lampu redup dipakai untuk hierarki, tapi tetap harus terbaca. */
+/* ---------------------------------- */
+.text-ink\/40,
+.text-ink\/50,
+.text-ink\/60,
+.stat-card-label,
+.stat-card-sub {
+    color: color-mix(in oklab, var(--color-ink) 78%, transparent) !important;
+}
+

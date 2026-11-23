@@ -30,7 +30,7 @@
         </x-flash>
     @endif
 
-    <form action="{{ route('spp_tariffs.update', $spp_tariff) }}" method="POST" class="card card-body" x-data="{ type: '{{ old('type', $spp_tariff->type ?? 'semua') }}' }}">
+    <form action="{{ route('spp_tariffs.update', $spp_tariff) }}" method="POST" class="card card-body" x-data="{ type: '{{ old('type', $spp_tariff->type ?? 'semua') }}' }">
         @csrf
         @method('PUT')
 

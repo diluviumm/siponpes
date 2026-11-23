@@ -168,11 +168,11 @@
                 ->map(fn ($diff, $field) => ['field' => $field, 'old' => $diff['old'], 'new' => $diff['new']])
                 ->values()
                 ->all(),
-        ])->toJson();
+        ])->all();
     @endphp
 
     <script>
-        window.__kasPerubahan = {!! $perubahanJson !!};
+        window.__kasPerubahan = @json($perubahanJson);
 
         window.perubahanModal = function () {
             return {

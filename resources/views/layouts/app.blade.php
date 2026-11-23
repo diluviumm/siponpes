@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'SIPONPES')</title>
+    <title>@yield('title', trim(\Illuminate\Support\Facades\View::yieldContent('page-title')) ?: 'SIPONPES')</title>
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
 
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -296,7 +296,7 @@
 
     {{-- Handle buka/tutup sidebar (semua ukuran layar) --}}
     <button type="button" @@click="toggleHandle()" x-cloak
-            class="absolute right-0 top-1/2 z-40 w-8 h-8 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full bg-pine-900 text-gold-300 shadow-lg shadow-pine-950/40 border border-white/10 hover:bg-pine-800 transition-all duration-300 cursor-pointer flex"
+            class="absolute right-0 top-1/2 z-40 w-8 h-8 -translate-y-1/2 translate-x-0 items-center justify-center rounded-full bg-pine-900 text-gold-300 shadow-lg shadow-pine-950/40 border border-white/10 hover:bg-pine-800 transition-all duration-300 cursor-pointer flex"
             :title="open ? 'Sempitkan sidebar' : 'Lebarkan sidebar'">
         <svg x-show="open" x-cloak class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/></svg>
         <svg x-show="!open" x-cloak class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"/></svg>
@@ -587,7 +587,54 @@
     };
 </script>
 
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+{{-- Jaring pengaman aksesibilitas: beri nama pada kontrol yang belum punya label. --}}
+<script>
+    (function () {
+        var NAMES = {
+            search: 'Pencarian', from: 'Dari tanggal', to: 'Sampai tanggal',
+            type: 'Jenis transaksi', status: 'Status', canteen_id: 'Pilih kantin',
+            santri_id: 'Pilih santri', kelas_id: 'Pilih kelas', branch_id: 'Pilih sekolah',
+            due_date: 'Tanggal jatuh tempo', amount: 'Jumlah', description: 'Keterangan',
+            admin_name: 'Nama lengkap admin', admin_email: 'Email admin',
+            admin_password: 'Kata sandi admin', password: 'Kata sandi',
+            password_confirmation: 'Ulangi kata sandi', year: 'Tahun ajaran'
+        };
+
+        function humanize(name) {
+            return name
+                .replace(/\[(\d+)\]/g, ' $1 ')
+                .replace(/[\[\]]/g, ' ')
+                .replace(/_/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim()
+                .replace(/^./, function (c) { return c.toUpperCase(); });
+        }
+
+        function labelize(root) {
+            var fields = root.querySelectorAll(
+                'input:not([type=hidden]), select, textarea'
+            );
+
+            Array.prototype.forEach.call(fields, function (el) {
+                if (el.hasAttribute('aria-label') || el.hasAttribute('aria-labelledby')) return;
+                if (el.labels && el.labels.length) return;
+                if (el.closest('label')) return;
+
+                var placeholder = (el.getAttribute('placeholder') || '').trim();
+                var name = el.getAttribute('name') || '';
+                el.setAttribute('aria-label', placeholder || NAMES[name] || humanize(name) || 'Kolom input');
+            });
+        }
+
+        labelize(document);
+
+        if (window.MutationObserver) {
+            new MutationObserver(function () { labelize(document); })
+                .observe(document.body, { childList: true, subtree: true });
+        }
+    })();
+</script>
+
 @stack('scripts')
 </body>
 </html>
