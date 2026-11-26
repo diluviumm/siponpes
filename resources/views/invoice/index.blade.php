@@ -21,8 +21,8 @@
             </a>
 
             <x-export-actions :buttons="[
-                ['label' => 'Export CSV', 'url' => route('invoices.export', request()->query())],
                 ['label' => 'Export PDF', 'url' => route('invoices.export', array_merge(request()->query(), ['pdf' => 1]))],
+                ['label' => 'Export CSV', 'url' => route('invoices.export', request()->query())],
             ]" />
 
             <div x-data="{ open: false }" class="relative">

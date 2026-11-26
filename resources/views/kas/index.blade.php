@@ -43,7 +43,7 @@
             <p class="page-subtitle">{{ $school->name }} — catat pemasukan & pengeluaran selain SPP.</p>
         </div>
         <div class="page-actions">
-            <div class="flex gap-2">
+            <div class="flex flex-wrap gap-2 w-full sm:w-auto min-w-0">
                 <x-export-actions :buttons="[
                     ['label' => 'Export PDF', 'url' => route('kas.index', array_merge(request()->query(), ['pdf' => 1]))],
                     ['label' => 'Export Excel', 'url' => route('kas.index', array_merge(request()->query(), ['excel' => 1]))],

@@ -35,12 +35,11 @@ class CanteenManageController extends Controller
         $q = $request->query('q');
 
         $canteens = $school
-            ? Canteen::withCount('items')
+            ? Canteen::withCount(['items', 'transactions'])
                 ->with(['transactions' => fn ($query) => $query
                     ->with('items')
                     ->orderByDesc('transaction_date')
-                    ->orderByDesc('id')
-                    ->limit(5)])
+                    ->orderByDesc('id')])
                 ->where('branch_id', $school->id)
                 ->when($q, fn ($query) => $query->where('name', 'like', "%{$q}%"))
                 ->orderBy('name')

@@ -89,7 +89,7 @@
                             @endif
                         </span>
                         <span class="block text-sm text-ink/60">
-                            {{ $canteen->items_count }} menu · {{ $canteen->transactions->count() }} transaksi terakhir
+                            {{ $canteen->items_count }} menu · {{ $canteen->transactions_count }} transaksi terakhir
                         </span>
                     </div>
                     <svg class="w-5 h-5 shrink-0 text-pine-700 transition-transform duration-200"

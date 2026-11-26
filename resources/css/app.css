@@ -41,7 +41,7 @@
 /* ---------------------------------- */
 @layer components {
     .btn {
-        @apply inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors duration-150 cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
+        @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg font-medium transition-colors duration-150 cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-pine-500 focus-visible:ring-offset-2 focus-visible:ring-offset-cream;
     }
     .btn-sm {
         @apply text-xs px-2.5 py-1.5;
@@ -128,6 +128,9 @@
     }
     .page-actions {
         @apply flex flex-wrap items-center gap-3 max-w-full;
+    }
+    .page-actions > * {
+        min-width: 0;
     }
 
     .breadcrumb {

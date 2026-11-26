@@ -84,7 +84,7 @@
     <div x-data="kasirModal()" x-init="init()">
         <div class="table-card">
             <div class="overflow-x-auto">
-                <table class="min-w-[640px] text-sm">
+                <table class="w-full min-w-[640px] text-sm">
                     <thead class="bg-cream">
                         <tr>
                             <th class="th">NIS</th>
@@ -116,7 +116,7 @@
                             @foreach($kasirGroups as $namaKelas => $list)
                                 <tr class="bg-pine-50/70">
                                     <td colspan="6" class="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-pine-800">
-                                        {{ $namaKelas }} · {{ $list->count() }} santri
+                                        Kelas {{ $namaKelas }} · {{ $list->count() }} santri
                                     </td>
                                 </tr>
                                 @foreach($list as $santri)
