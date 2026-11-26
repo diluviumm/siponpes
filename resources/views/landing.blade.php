@@ -92,7 +92,7 @@
                 </p>
 
                 <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
-                    <a href="{{ route('register') }}" class="btn btn-gold btn-lg shadow-xl shadow-gold-600/20">
+                    <a href="{{ route('register') }}" class="btn btn-gold btn-lg !text-black shadow-xl shadow-gold-600/20">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                         Daftarkan Sekolah Anda
                     </a>
@@ -128,7 +128,7 @@
         ============================================================ --}}
         <section id="fitur" class="max-w-6xl mx-auto px-4 lg:px-8 py-16 lg:py-24 scroll-mt-20">
             <div class="text-center mb-12">
-                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-gold-100 text-gold-700 mb-4">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-gold-100 text-pine-900 mb-4">
                     <svg class="w-2 h-2" viewBox="0 0 10 10" fill="currentColor"><path d="M5 0 10 5 5 10 0 5Z"/></svg>
                     Fitur Utama
                 </span>
@@ -234,7 +234,7 @@
         ============================================================ --}}
         <section id="cara-kerja" class="max-w-6xl mx-auto px-4 lg:px-8 py-16 lg:py-24 scroll-mt-20">
             <div class="text-center mb-12">
-                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-gold-100 text-gold-700 mb-4">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-gold-100 text-pine-900 mb-4">
                     <svg class="w-2 h-2" viewBox="0 0 10 10" fill="currentColor"><path d="M5 0 10 5 5 10 0 5Z"/></svg>
                     Cara Kerja
                 </span>
@@ -285,7 +285,7 @@
                 <p class="text-pine-100/85 mt-4 max-w-xl mx-auto text-lg">
                     Daftarkan sekolah Anda sekarang. Setelah disetujui admin, Anda langsung bisa mengelola data dan keuangan pesantren.
                 </p>
-                <a href="{{ route('register') }}" class="btn btn-gold btn-lg mt-8 shadow-xl shadow-gold-600/20">
+                <a href="{{ route('register') }}" class="btn btn-gold btn-lg mt-8 !text-black shadow-xl shadow-gold-600/20">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                     Daftar Sekolah
                 </a>
