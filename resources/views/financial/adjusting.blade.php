@@ -47,7 +47,7 @@
         @csrf
         <input type="hidden" name="branch_id" value="{{ $school->id }}">
 
-        <h3 class="font-display text-lg font-semibold text-pine-900 mb-4">Jurnal Penyesuaian</h3>
+        <h2 class="font-display text-lg font-semibold text-pine-900 mb-4">Jurnal Penyesuaian</h2>
 
         @if($errors->any())
             <div class="bg-rose-50 border border-rose-200 text-rose-800 rounded-lg px-4 py-3 mb-4 text-sm">
@@ -75,7 +75,7 @@
                         <th class="th">Akun</th>
                         <th class="th text-right">Debit</th>
                         <th class="th text-right">Kredit</th>
-                        <th class="th w-10"></th>
+                        <th class="th w-10"><span class="sr-only">Aksi</span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -127,7 +127,7 @@
     </form>
 
     <div class="card card-body mb-6">
-        <h3 class="font-display text-lg font-semibold text-pine-900 mb-2">Tutup Buku (Penutupan Tahun)</h3>
+        <h2 class="font-display text-lg font-semibold text-pine-900 mb-2">Tutup Buku (Penutupan Tahun)</h2>
         <p class="text-sm text-ink/60 mb-4">
             Menutup seluruh pendapatan &amp; beban pada tahun tertentu ke akun <strong>Laba Ditahan</strong> (3010).
             Hanya bisa dilakukan sekali per tahun per sekolah.
@@ -147,7 +147,7 @@
 
     @if($closings->isNotEmpty())
         <div class="card card-body">
-            <h3 class="font-display text-lg font-semibold text-pine-900 mb-3">Riwayat Penutupan</h3>
+            <h2 class="font-display text-lg font-semibold text-pine-900 mb-3">Riwayat Penutupan</h2>
             <div class="table-card">
                 <table class="min-w-full text-sm">
                     <thead>

@@ -5,7 +5,7 @@
 @endphp
 
 @if(count($items))
-    <nav class="breadcrumb">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
         @foreach($items as $item)
             @if(! $loop->first)
                 <span>/</span>

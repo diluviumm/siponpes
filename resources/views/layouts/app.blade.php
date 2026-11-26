@@ -45,7 +45,7 @@
         </div>
 
         {{-- Nav --}}
-        <nav class="sidebar-scroll mt-1 flex-1 overflow-y-auto px-3 pb-4">
+        <nav class="sidebar-scroll mt-1 flex-1 overflow-y-auto px-3 pb-4" aria-label="Navigasi utama">
 
             @php
                 $isCashier = auth()->user()->isCashier();
@@ -309,9 +309,9 @@
         <header class="bg-paper/95 backdrop-blur-sm border-b border-ink/10 sticky top-0 z-20">
             <div class="px-4 lg:px-8 h-16 flex items-center gap-4">
                 <div class="min-w-0">
-                    <h2 class="font-display text-lg lg:text-xl font-semibold text-pine-900 truncate">
+                    <h1 class="font-display text-lg lg:text-xl font-semibold text-pine-900 truncate">
                         @yield('page-title', 'SIPONPES')
-                    </h2>
+                    </h1>
                     @if(! auth()->user()->isSuperadmin() && auth()->user()->school)
                         <p class="text-[11px] text-ink/50 leading-tight truncate">
                             {{ auth()->user()->school->name }}
@@ -428,7 +428,7 @@
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                     </div>
                     <div class="min-w-0">
-                        <h3 id="confirm-title" class="font-display text-lg font-semibold text-pine-900" x-text="title"></h3>
+                        <h2 id="confirm-title" class="font-display text-lg font-semibold text-pine-900" x-text="title"></h2>
                         <p class="text-sm text-ink/70 mt-1 whitespace-pre-line" x-text="message"></p>
                     </div>
                 </div>

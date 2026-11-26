@@ -30,7 +30,7 @@
     @if(session('importResult'))
         <div class="card overflow-hidden mb-8">
             <div class="bg-gradient-to-r from-pine-700 to-pine-800 text-white px-6 py-4">
-                <h3 class="text-lg font-bold">Import Selesai</h3>
+                <h2 class="text-lg font-bold">Import Selesai</h2>
                 <p class="text-sm text-pine-100">Berikut ringkasan hasil import data Anda.</p>
             </div>
             <div class="card-body">
@@ -89,7 +89,7 @@
     @endif
 
     <div class="card card-body">
-        <h3 class="text-xl font-bold mb-1">Upload File Excel</h3>
+        <h2 class="text-xl font-bold mb-1">Upload File Excel</h2>
         <p class="text-sm text-ink/60 mb-6">
             Pilih file <strong>.xlsx</strong> untuk mengimport data santri dan tabungan ke
             <strong>{{ $school->name }}</strong>.
@@ -117,10 +117,10 @@
     </div>
 
     <div class="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-6">
-        <h4 class="font-bold text-blue-800 mb-3 flex items-center gap-2">
+        <h3 class="font-bold text-blue-800 mb-3 flex items-center gap-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             Format File yang Didukung
-        </h4>
+        </h3>
         <p class="text-sm text-ink/80 mb-3">Aplikasi membaca struktur berikut. Kolom dideteksi otomatis dari baris judul (header). Sheet setoran (<code>S-*</code>) dan penarikan (<code>P-*</code>) dibaca untuk semua bulan Januari–Desember:</p>
         <div class="table-card">
             <table class="min-w-full text-sm">

@@ -10,7 +10,7 @@
 <div class="card card-body">
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
-            <h2 class="font-display text-xl font-semibold text-pine-900">Buku Besar</h2>
+            <h1 class="font-display text-xl font-semibold text-pine-900">Buku Besar</h1>
             <p class="page-subtitle">Lihat mutasi per akun secara rinci.</p>
         </div>
         <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">

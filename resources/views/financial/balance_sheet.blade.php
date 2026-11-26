@@ -10,7 +10,7 @@
 <div class="card card-body">
     <div class="mb-6 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
         <div>
-            <h2 class="font-display text-xl font-semibold text-pine-900">Laporan Neraca</h2>
+            <h1 class="font-display text-xl font-semibold text-pine-900">Laporan Neraca</h1>
             <p class="page-subtitle">Posisi aset, kewajiban, dan ekuitas pondok pesantren.</p>
         </div>
         <div class="flex gap-2 shrink-0">
@@ -23,7 +23,7 @@
 
     <div class="grid gap-6 lg:grid-cols-2">
         <div class="bg-cream border border-ink/10 rounded-lg p-4">
-            <h3 class="text-lg font-semibold mb-4 text-pine-700">Aset</h3>
+            <h2 class="text-lg font-semibold mb-4 text-pine-700">Aset</h2>
             <div class="space-y-2">
                 @forelse($assetsTotals as $item)
                     <div class="flex justify-between gap-4 py-1 {{ !$loop->last ? 'border-b border-ink/10' : '' }}">
@@ -42,7 +42,7 @@
 
         <div class="space-y-6">
             <div class="bg-cream border border-ink/10 rounded-lg p-4">
-                <h3 class="text-lg font-semibold mb-4 text-blue-700">Kewajiban</h3>
+                <h2 class="text-lg font-semibold mb-4 text-blue-700">Kewajiban</h2>
                 <div class="space-y-2">
                     @forelse($liabilitiesTotals as $item)
                         <div class="flex justify-between gap-4 py-1 {{ !$loop->last ? 'border-b border-ink/10' : '' }}">
@@ -60,7 +60,7 @@
             </div>
 
             <div class="bg-cream border border-ink/10 rounded-lg p-4">
-                <h3 class="text-lg font-semibold mb-4 text-purple-700">Ekuitas</h3>
+                <h2 class="text-lg font-semibold mb-4 text-purple-700">Ekuitas</h2>
                 <div class="space-y-2">
                     @forelse($equityTotals as $item)
                         <div class="flex justify-between gap-4 py-1 {{ !$loop->last ? 'border-b border-ink/10' : '' }}">

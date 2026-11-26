@@ -10,7 +10,7 @@
 <div class="card card-body">
     <div class="mb-6 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
         <div>
-            <h2 class="font-display text-xl font-semibold text-pine-900">Laporan Arus Kas</h2>
+            <h1 class="font-display text-xl font-semibold text-pine-900">Laporan Arus Kas</h1>
             <p class="page-subtitle">Penerimaan &amp; pengeluaran kas (akun Kas/Bank) pada periode terpilih.</p>
         </div>
         <div class="flex gap-2 shrink-0">
@@ -38,7 +38,7 @@
 
     <div class="grid gap-6 lg:grid-cols-2 mb-6">
         <div class="bg-cream border border-ink/10 rounded-lg p-4">
-            <h3 class="text-lg font-semibold mb-3 text-pine-700">Penerimaan per Kategori</h3>
+            <h2 class="text-lg font-semibold mb-3 text-pine-700">Penerimaan per Kategori</h2>
             @forelse($inflowByCategory as $category => $amount)
                 <div class="flex justify-between py-1 border-b border-ink/10">
                     <span>{{ $category }}</span>
@@ -49,7 +49,7 @@
             @endforelse
         </div>
         <div class="bg-cream border border-ink/10 rounded-lg p-4">
-            <h3 class="text-lg font-semibold mb-3 text-rose-700">Pengeluaran per Kategori</h3>
+            <h2 class="text-lg font-semibold mb-3 text-rose-700">Pengeluaran per Kategori</h2>
             @forelse($outflowByCategory as $category => $amount)
                 <div class="flex justify-between py-1 border-b border-ink/10">
                     <span>{{ $category }}</span>

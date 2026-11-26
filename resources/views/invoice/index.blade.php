@@ -95,14 +95,14 @@
         @if($kelasList->isNotEmpty())
             <div class="flex items-center gap-1.5 mb-4 flex-wrap">
                 <a href="{{ route('invoices.index', array_merge(request()->query(), ['kelas_id' => null])) }}"
-                   class="px-3 py-1 text-xs font-medium rounded-full border transition-colors {{ !$kelasId ? 'bg-pine-700 text-white border-pine-700' : 'bg-paper text-ink/60 border-ink/20 hover:border-pine-300 hover:text-pine-700' }}">
+                   class="px-3 py-1 text-xs font-medium rounded-full border transition-colors {{ !$kelasId ? 'bg-pine-700 text-white border-pine-700' : 'bg-paper text-ink/70 border-ink/20 hover:border-pine-300 hover:text-pine-700' }}">
                     Semua Kelas
                 </a>
                 @foreach($kelasList as $kelas)
                     <a href="{{ route('invoices.index', array_merge(request()->query(), ['kelas_id' => $kelas->id])) }}"
-                       class="px-3 py-1 text-xs font-medium rounded-full border transition-colors {{ $kelasId == $kelas->id ? 'bg-pine-700 text-white border-pine-700' : 'bg-paper text-ink/60 border-ink/20 hover:border-pine-300 hover:text-pine-700' }}">
+                       class="px-3 py-1 text-xs font-medium rounded-full border transition-colors {{ $kelasId == $kelas->id ? 'bg-pine-700 text-white border-pine-700' : 'bg-paper text-ink/70 border-ink/20 hover:border-pine-300 hover:text-pine-700' }}">
                         {{ $kelas->nama_kelas }}
-                        <span class="ml-1 text-[10px] opacity-75">({{ $kelas->santris_count }})</span>
+                        <span class="ml-1 text-[10px]">({{ $kelas->santris_count }})</span>
                     </a>
                 @endforeach
             </div>

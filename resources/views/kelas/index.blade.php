@@ -86,7 +86,7 @@
             <div class="card p-5 flex flex-col">
                 <div class="flex items-start justify-between gap-3 mb-4">
                     <div class="min-w-0">
-                        <h4 class="font-display text-lg font-semibold text-pine-900">{{ $item->nama_kelas }}</h4>
+                        <h2 class="font-display text-lg font-semibold text-pine-900">{{ $item->nama_kelas }}</h2>
                         <p class="text-sm text-ink/60 mt-0.5 flex items-center gap-1.5">
                             <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
                             <span class="truncate">{{ $item->wali_kelas }}</span>

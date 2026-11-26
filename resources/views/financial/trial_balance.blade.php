@@ -10,7 +10,7 @@
 <div class="card card-body">
     <div class="mb-6 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
         <div>
-            <h2 class="font-display text-xl font-semibold text-pine-900">Neraca Saldo</h2>
+            <h1 class="font-display text-xl font-semibold text-pine-900">Neraca Saldo</h1>
             <p class="page-subtitle">Ringkasan saldo debit dan kredit seluruh akun.</p>
         </div>
         <div class="flex gap-2 shrink-0">

@@ -97,7 +97,7 @@
                                 @if($log->changes && count($log->changes))
                                     <ul class="text-xs space-y-0.5 max-w-xs">
                                         @foreach($log->changes as $field => $diff)
-                                            <li><code class="text-ink/50">{{ $field }}</code>: <s class="text-rose-600">{{ $diff['old'] }}</s> → <b class="text-pine-700">{{ $diff['new'] }}</b></li>
+                                            <li><code class="text-ink/50">{{ $field }}</code>: <s class="text-rose-700">{{ $diff['old'] }}</s> → <b class="text-pine-700">{{ $diff['new'] }}</b></li>
                                         @endforeach
                                     </ul>
                                 @else

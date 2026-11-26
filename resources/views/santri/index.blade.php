@@ -263,7 +263,7 @@
                class="school-select border-pine-200">
                 <div class="flex justify-between items-start mb-3">
                     <div>
-                        <h4 class="font-display text-lg font-semibold text-pine-900">Semua Santri</h4>
+                        <h2 class="font-display text-lg font-semibold text-pine-900">Semua Santri</h2>
                         <p class="text-sm text-ink/60 mt-0.5">Seluruh kelas</p>
                     </div>
                     <div class="text-right">
@@ -281,7 +281,7 @@
                    class="school-select">
                     <div class="flex justify-between items-start mb-3">
                         <div>
-                            <h4 class="font-display text-lg font-semibold text-pine-900">{{ $kelas->nama_kelas }}</h4>
+                            <h2 class="font-display text-lg font-semibold text-pine-900">{{ $kelas->nama_kelas }}</h2>
                             <p class="text-sm text-ink/60 mt-0.5">{{ $kelas->wali_kelas }}</p>
                         </div>
                         <div class="text-right">

@@ -10,7 +10,7 @@
 <div class="card card-body">
     <div class="mb-6 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
         <div>
-            <h2 class="font-display text-xl font-semibold text-pine-900">Laporan Surplus/Defisit</h2>
+            <h1 class="font-display text-xl font-semibold text-pine-900">Laporan Surplus/Defisit</h1>
             <p class="page-subtitle">Ringkasan pendapatan, beban, dan surplus/defisit pondok pesantren.</p>
         </div>
         <div class="flex gap-2 shrink-0">
@@ -23,7 +23,7 @@
 
     <div class="grid gap-6 lg:grid-cols-2">
         <div class="bg-cream border border-ink/10 rounded-lg p-4">
-            <h3 class="text-lg font-semibold mb-4 text-pine-700">Pendapatan</h3>
+            <h2 class="text-lg font-semibold mb-4 text-pine-700">Pendapatan</h2>
             <div class="space-y-2">
                 @forelse($revenueTotals as $item)
                     <div class="flex justify-between py-1 {{ !$loop->last ? 'border-b border-ink/10' : '' }}">
@@ -41,7 +41,7 @@
         </div>
 
         <div class="bg-cream border border-ink/10 rounded-lg p-4">
-            <h3 class="text-lg font-semibold mb-4 text-rose-700">Beban</h3>
+            <h2 class="text-lg font-semibold mb-4 text-rose-700">Beban</h2>
             <div class="space-y-2">
                 @forelse($expenseTotals as $item)
                     <div class="flex justify-between py-1 {{ !$loop->last ? 'border-b border-ink/10' : '' }}">

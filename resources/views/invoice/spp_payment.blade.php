@@ -68,7 +68,7 @@
             <div class="card card-body mb-6 border-gold-300">
                 <div class="flex items-start justify-between flex-wrap gap-3">
                     <div>
-                        <h3 class="font-display font-semibold text-pine-900">Bayar Massal</h3>
+                        <h2 class="font-display font-semibold text-pine-900">Bayar Massal</h2>
                         <p class="text-sm text-ink/60">Pilih periode, lalu bayar untuk semua santri bersaldo cukup di seluruh kelas.</p>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                 @endphp
                 <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
                     <div class="flex items-center gap-3">
-                        <h3 class="font-display font-semibold text-pine-900">Kelas {{ $selectedKelas->nama_kelas }}</h3>
+                        <h2 class="font-display font-semibold text-pine-900">Kelas {{ $selectedKelas->nama_kelas }}</h2>
                     </div>
                     <div class="flex items-center gap-2 flex-wrap">
                         <form method="GET" action="{{ route('invoices.spp-payment', $isSuper ? ['school_id' => $school->id, 'kelas_id' => $selectedKelas->id] : ['kelas_id' => $selectedKelas->id]) }}" class="flex gap-2">

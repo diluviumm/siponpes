@@ -68,7 +68,7 @@
         @apply bg-rose-700 text-white hover:bg-rose-800 active:bg-rose-900;
     }
     .btn-warning {
-        @apply bg-gold-500 text-white hover:bg-gold-600 active:bg-gold-700;
+        @apply bg-gold-500 text-pine-950 hover:bg-gold-600 active:bg-gold-700;
     }
     .btn-ghost {
         @apply bg-paper text-ink border border-ink/15 hover:bg-cream;
@@ -124,7 +124,7 @@
         @apply h-px bg-ink/20 flex-1;
     }
     .page-subtitle {
-        @apply text-sm text-ink/60 mt-1.5;
+        @apply text-sm text-ink/70 mt-1.5;
     }
     .page-actions {
         @apply flex flex-wrap items-center gap-3 max-w-full;

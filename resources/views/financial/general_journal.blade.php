@@ -10,7 +10,7 @@
 <div class="card card-body">
     <div class="mb-6 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
         <div>
-            <h2 class="font-display text-xl font-semibold text-pine-900">Jurnal Umum</h2>
+            <h1 class="font-display text-xl font-semibold text-pine-900">Jurnal Umum</h1>
             <p class="page-subtitle">Daftar seluruh transaksi jurnal keuangan secara kronologis.</p>
         </div>
         <div class="flex gap-2 shrink-0">
